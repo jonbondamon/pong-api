@@ -1,5 +1,8 @@
 .PHONY: help install test test-unit test-integration lint format clean setup-dev
 
+# Use python3 explicitly since python might not be available
+PYTHON := python3
+
 help:
 	@echo "Available commands:"
 	@echo "  install      - Install package and dependencies"
@@ -13,34 +16,34 @@ help:
 	@echo "  clean        - Clean up temporary files"
 
 install:
-	pip install -r requirements.txt
-	pip install -e .
+	$(PYTHON) -m pip install -r requirements.txt
+	$(PYTHON) -m pip install -e .
 
 setup-dev: install
-	pre-commit install
+	$(PYTHON) -m pre_commit install
 	@echo "Development environment setup complete!"
 	@echo "Pre-commit hooks will now run automatically before each commit."
 
 test:
-	python -m pytest tests/ -v --tb=short
+	$(PYTHON) -m pytest tests/ -v --tb=short
 
 test-unit:
-	python -m pytest tests/ -v --tb=short -k "not integration"
+	$(PYTHON) -m pytest tests/ -v --tb=short -k "not integration"
 
 test-integration:
-	python -m pytest tests/test_integration_*.py -v --tb=short -k "not performance"
+	$(PYTHON) -m pytest tests/test_integration_*.py -v --tb=short -k "not performance"
 
 lint:
-	black --check --diff tabletennis_api/ tests/
-	isort --check-only --diff tabletennis_api/ tests/
-	flake8 tabletennis_api/ tests/ --max-line-length=88 --extend-ignore=E203,W503
+	$(PYTHON) -m black --check --diff tabletennis_api/ tests/
+	$(PYTHON) -m isort --check-only --diff tabletennis_api/ tests/
+	$(PYTHON) -m flake8 tabletennis_api/ tests/ --max-line-length=88 --extend-ignore=E203,W503
 
 format:
-	black tabletennis_api/ tests/
-	isort tabletennis_api/ tests/
+	$(PYTHON) -m black tabletennis_api/ tests/
+	$(PYTHON) -m isort tabletennis_api/ tests/
 
 coverage:
-	python -m pytest tests/ --cov=tabletennis_api --cov-report=html --cov-report=term-missing
+	$(PYTHON) -m pytest tests/ --cov=tabletennis_api --cov-report=html --cov-report=term-missing
 	@echo "Coverage report generated in htmlcov/"
 
 clean:
