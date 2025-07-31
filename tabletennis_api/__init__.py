@@ -5,21 +5,21 @@ __author__ = "Your Name"
 __email__ = "your.email@example.com"
 
 from .client import TableTennisAPI
-from .exceptions import TableTennisAPIError, AuthenticationError, RateLimitError, ServerError
-from .managers import EventsManager, LeagueManager, PlayerManager, OddsManager
-from .models import (
-    League, Player, Event, EventSummary, TimelineEntry, StadiumData, EventExtra, 
-    PaginationInfo, APIResponse, PlayerMatchHistory, TournamentData
-)
+from .exceptions import (AuthenticationError, RateLimitError, ServerError,
+                         TableTennisAPIError)
+from .managers import EventsManager, LeagueManager, OddsManager, PlayerManager
+from .models import (APIResponse, Event, EventExtra, EventSummary, League,
+                     PaginationInfo, Player, PlayerMatchHistory, StadiumData,
+                     TimelineEntry, TournamentData)
 
 __all__ = [
     "TableTennisAPI",
     "TableTennisAPIError",
-    "AuthenticationError", 
+    "AuthenticationError",
     "RateLimitError",
     "ServerError",
     "EventsManager",
-    "LeagueManager", 
+    "LeagueManager",
     "PlayerManager",
     "OddsManager",
     "League",
@@ -27,7 +27,7 @@ __all__ = [
     "Event",
     "EventSummary",
     "TimelineEntry",
-    "StadiumData", 
+    "StadiumData",
     "EventExtra",
     "PaginationInfo",
     "APIResponse",
