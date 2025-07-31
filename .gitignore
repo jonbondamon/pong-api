@@ -130,7 +130,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Development/Debug files
+# Development/Debug files (but not test files in tests/ directory)
 debug_*.py
 test_*.py
+!tests/test_*.py
 *.debug
